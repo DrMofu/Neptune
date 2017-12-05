@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -150,6 +151,11 @@ public class MChooseView extends JFrame{
 		tattr[3].setBounds(120, 140, 60, 30);
 		tattr[3].setFont(font);
 		attrAera.add(tattr[3]);
+
+		JLabel picture = new JLabel("");
+	    picture.setIcon(new ImageIcon("img\\back.png"));
+	    picture.setBounds(0, 0, INFO_W, INFO_H);
+	    contentPane.add(picture);
 	}
 	
 }
