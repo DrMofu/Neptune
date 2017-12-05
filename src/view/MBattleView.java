@@ -30,6 +30,10 @@ public class MBattleView extends JFrame{
 		initBattleAera(contentPane);		
 	}
 	private void initBattleAera(JPanel contentPane) {		
-		
+		JPanel leftAera=new JPanel();
+		leftAera.setBounds(30, 280, 500, 200);
+		leftAera.setBackground(new Color(135,206,235));
+		contentPane.add(leftAera);
+		leftAera.setLayout(null);
 	}
 }

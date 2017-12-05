@@ -3,23 +3,23 @@ package model;
 import java.util.ArrayList;
 
 public class Player {
-	/** ÉúÃüÖµ*/
+	/** ç”Ÿå‘½å€¼*/
 	public static int hp;
-	/** Ê³ÎïÁ¿*/
+	/** é£Ÿç‰©é‡*/
 	public static int food;
-	/** Ë®*/
+	/** æ°´*/
 	public static int water;
-	/** ½ğÇ®*/
+	/** é‡‘é’±*/
 	public static int money;
-	/** º½ĞĞµÄ¾àÀë*/
+	/** èˆªè¡Œçš„è·ç¦»*/
 	public static int distance;
-	/** Î»ÖÃx*/
+	/** ä½ç½®x*/
 	public static int x;
-	/** Î»ÖÃy*/
+	/** ä½ç½®y*/
 	public static int y;
-	/** ¹¥»÷Á¦*/
+	/** æ”»å‡»åŠ›*/
 	public static int attack;
-	/** ÎïÆ·Çåµ¥*/
+	/** ç‰©å“æ¸…å•*/
 	public static ArrayList<Buff> buffs;
 	
 	public Player() {

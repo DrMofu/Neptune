@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
- * EventÊı¾İ·ÃÎÊ
- * @author ÍõÖ®Íş
+ * Eventæ•°æ®è®¿é—®
+ * @author ç‹ä¹‹å¨
  *
  */
 public class EventDA {
@@ -16,28 +17,32 @@ public class EventDA {
 	static Connection aConnection;
 	static Statement aStatement;
 	
-	/** ÊÂ¼şID*/
+	/** äº‹ä»¶ID*/
 	static int ID;
-	/** ÊÂ¼şÃèÊö*/
+	/** äº‹ä»¶æè¿°*/
 	static String description;
-	/** Ñ¡ÏîÊı×é*/
+	/** é€‰é¡¹æ•°ç»„*/
 	static Choice[] choices;
 	
 	/**
-	 * Á¬½ÓÊı¾İ¿â
-	 * @return Á¬½Ó
+	 * è¿æ¥æ•°æ®åº“
+	 * @return è¿æ¥
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
 	public static Connection initialize() throws ClassNotFoundException, SQLException {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			aConnection = DriverManager.getConnection("jdbc:odbc:Database", "Database", "database");
+			String url = "jdbc:odbc:driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=src\\Database.accdb";
+			//aConnection = DriverManager.getConnection("jdbc:odbc:Database", "Database");
+			Properties p = new Properties();
+            p.put("charSet", "GBK");
+            aConnection = DriverManager.getConnection(url, p);
 			aStatement = aConnection.createStatement();
 		return aConnection;		
 	}
 	
 	/**
-	 * ¶Ï¿ªÊı¾İ¿âÁ¬½Ó
+	 * æ–­å¼€æ•°æ®åº“è¿æ¥
 	 * @throws SQLException
 	 */
 	public static void terminate() throws SQLException {
@@ -46,24 +51,24 @@ public class EventDA {
 	}
 	
 	/**
-	 * ²éÕÒÊÂ¼ş
-	 * @param id ÊÂ¼şid
-	 * @return ÊÂ¼ş
+	 * æŸ¥æ‰¾äº‹ä»¶
+	 * @param id äº‹ä»¶id
+	 * @return äº‹ä»¶
 	 * @throws SQLException
 	 */
 	public static Event find(int id) throws SQLException {
 		aEvent=null;
-		String sql="SELECT * FROM ÊÂ¼ş  WHERE ID="+id;
+		String sql="SELECT * FROM äº‹ä»¶ WHERE ID="+id;
 		ResultSet rs=aStatement.executeQuery(sql);
 		boolean gotIt=rs.next();
 		if(gotIt) {
 			ID=rs.getInt(1);
 			description=rs.getString(2);
 			choices=new Choice[4];
-			choices[0]=new Choice(rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9), rs.getInt(10));
-			choices[1]=new Choice(rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getInt(16),rs.getInt(17), rs.getInt(18));
-			choices[2]=new Choice(rs.getString(19),rs.getInt(20),rs.getInt(21),rs.getInt(22),rs.getInt(23),rs.getInt(24),rs.getInt(25), rs.getInt(26));
-			choices[3]=new Choice(rs.getString(27),rs.getInt(28),rs.getInt(29),rs.getInt(30),rs.getInt(31),rs.getInt(32),rs.getInt(33), rs.getInt(34));
+			choices[0]=new Choice(rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8), rs.getInt(10));
+			choices[1]=new Choice(rs.getString(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),rs.getInt(16),rs.getInt(18));
+			choices[2]=new Choice(rs.getString(19),rs.getInt(20),rs.getInt(21),rs.getInt(22),rs.getInt(23),rs.getInt(24), rs.getInt(26));
+			choices[3]=new Choice(rs.getString(27),rs.getInt(28),rs.getInt(29),rs.getInt(30),rs.getInt(31),rs.getInt(32),rs.getInt(34));
 			aEvent=new Event(ID,description,choices);
 		}
 		rs.close();

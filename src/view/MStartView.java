@@ -19,6 +19,7 @@ public class MStartView extends JFrame{
 	private static final int INFO_W = 960;
 	/** 信息窗口的高度 */
 	private static final int INFO_H = 600;
+	public static JLabel start;
 	public MStartView(String name){
 		super(name);
 		startViewInit();
@@ -36,7 +37,7 @@ public class MStartView extends JFrame{
 		contentPane.setLayout(null);
 		int labelHigh=80;
 		int labelWidth=100;
-		JLabel start=new JLabel("开始");
+		start=new JLabel("开始");
 		Font font=new Font("Monospaced",Font.BOLD,44);//设置字体格式和大小
 		start.setFont(font);
 		start.setBounds((INFO_W-labelWidth)/2, INFO_H/2, labelWidth, labelHigh);
