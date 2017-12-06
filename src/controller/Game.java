@@ -9,7 +9,7 @@ import model.Event;
 import model.Player;
 
 public class Game {
-	/** ×Ü¾àÀë*/
+	/** æ€»è·ç¦»*/
 	public static final int DISTANCE=100;
 	
 	public static Random eRand=new Random();
@@ -25,7 +25,7 @@ public class Game {
 			if(aEvent==null) {
 				aEvent=Event.find(eventId);
 			}	
-			System.out.println(aEvent.getDescription()+":\nA."+aEvent.getChoices()[0].getDescription()+"\nB."+aEvent.getChoices()[1].getDescription()+"\nC."+aEvent.getChoices()[2].getDescription()+"\nD."+aEvent.getChoices()[3].getDescription()+"\nÇëÑ¡Ôñ£º");
+			System.out.println(aEvent.getDescription()+":\nA."+aEvent.getChoices()[0].getDescription()+"\nB."+aEvent.getChoices()[1].getDescription()+"\nC."+aEvent.getChoices()[2].getDescription()+"\nD."+aEvent.getChoices()[3].getDescription()+"\nè¯·é€‰æ‹©ï¼š");
 			Scanner sc=new Scanner(System.in);
 			String pChoice=sc.nextLine();
 			Choice curChoice=chooseEvent(pChoice,aEvent);
@@ -36,10 +36,10 @@ public class Game {
 	}
 	
 	/**
-	 * Ñ¡Ôñ
-	 * @param pChoice Ñ¡Ïî
-	 * @param aEvent ÊÂ¼ş
-	 * @return Ñ¡Ïî
+	 * é€‰æ‹©
+	 * @param pChoice é€‰é¡¹
+	 * @param aEvent äº‹ä»¶
+	 * @return é€‰é¡¹
 	 */
 	public static Choice chooseEvent(String pChoice, Event aEvent) {
 		if(pChoice.equals("A")||pChoice.equals("a")) {
@@ -56,8 +56,8 @@ public class Game {
 	}
 	
 	/**
-	 * ÓÎÏ·ÊÇ·ñ½áÊø
-	 * @return ÊÇ·ñ
+	 * æ¸¸æˆæ˜¯å¦ç»“æŸ
+	 * @return æ˜¯å¦
 	 */
 	public static boolean gameOver() {
 		if(Player.food<=0||Player.hp<=0||Player.water<=0||Player.distance>=DISTANCE) {
@@ -68,7 +68,7 @@ public class Game {
 	}
 
 	/**
-	 * Õ¹Ê¾ÓÎÏ·½á¹û
+	 * å±•ç¤ºæ¸¸æˆç»“æœ
 	 */
 	public static void showResult() {
 		if((Player.food<=0||Player.hp<=0||Player.water<=0)&&Player.distance<DISTANCE) {

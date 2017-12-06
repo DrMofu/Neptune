@@ -2,63 +2,79 @@ package model;
 
 import java.sql.SQLException;
 
+import controller.StartGame;
+
 /**
- * Ñ¡ÏîÀà
- * @author ÍõÖ®Íş
+ * é€‰é¡¹ç±»
+ * @author ç‹ä¹‹å¨
  *
  */
 public class Choice {
-	/** ÃèÊö*/
+	/** æè¿°*/
 	private String description;
-	/** ½ğÇ®*/
+	/** é‡‘é’±*/
 	private int money;
-	/** Ê³Îï*/
+	/** é£Ÿç‰©*/
 	private int food;
-	/** ÑªÁ¿*/
+	/** è¡€é‡*/
 	private int HP;
-	/** Ë®*/
+	/** æ°´*/
 	private int water;
-	/** ´¥·¢µÄº¯Êı*/
-	private int whichFun;
-	/** ÏÂÒ»¸öÊÂ¼şµÄID*/
+	/** è£…å¤‡*/
+	private int buff;
+	/** èˆªè¡Œæ—¥å¿—*/
+	private String diary;
+	/** ä¸‹ä¸€ä¸ªäº‹ä»¶çš„ID*/
 	private int nextID;
-	/** ÒÆ¶¯¾àÀë*/
+	/** ç§»åŠ¨è·ç¦»*/
 	private int diatance;
 	
 	/**
-	 * Ñ¡Ïî¹¹Ôìº¯Êı
-	 * @param des Ñ¡ÏîÃèÊö
-	 * @param money ½ğÇ®
-	 * @param food Ê³Îï
-	 * @param HP ÑªÁ¿
-	 * @param water Ë®
-	 * @param whichFun Ñ¡ÖĞºóµ÷ÓÃÄÄ¸ö·½·¨
-	 * @param nextID ÏÂÒ»¸ö¹ØÁªÊÂ¼şID 
+	 * é€‰é¡¹æ„é€ å‡½æ•°
+	 * @param des é€‰é¡¹æè¿°
+	 * @param money é‡‘é’±
+	 * @param food é£Ÿç‰©
+	 * @param HP è¡€é‡
+	 * @param water æ°´
+	 * @param nextID ä¸‹ä¸€ä¸ªå…³è”äº‹ä»¶ID 
 	 */
-	public Choice(String des, int diatance,int money ,int food, int HP,int water, int whichFun,int nextID) {
+	public Choice(String des, int diatance,int money ,int food, int HP,int water,String diary,int nextID,int buff) {
 		this.setDescription(des);
 		this.setDiatance(diatance);
 		this.setMoney(money);
 		this.setFood(food);
 		this.setHP(HP);
-		this.setWater(water);	
+		this.setWater(water);
+		this.setDiary(diary);
 		this.setNextID(nextID);
+		this.setBuff(buff);
 	}
 	
+	public String getDiary() {
+		return diary;
+	}
+
+	public void setDiary(String diary) {
+		this.diary = diary;
+	}
+
 	/**
-	 * ²úÉúÌØ¶¨µÄÏÂÒ»¸öÊÂ¼ş
+	 * äº§ç”Ÿç‰¹å®šçš„ä¸‹ä¸€ä¸ªäº‹ä»¶
 	 * @return 
 	 * @throws SQLException 
 	 */
 	public Event newEvent(int nextID) throws SQLException {
 		if(nextID!=0) {
 			return Event.find(nextID);
+		}else {
+			int eventId;
+			eventId=StartGame.eRand.nextInt(4)+1;
+			return Event.find(eventId);
 		}
-		return null;
 	}
 	
 	/**
-	 * ½øÈë´ò¶·½çÃæ
+	 * è¿›å…¥æ‰“æ–—ç•Œé¢
 	 */
 	public void fight() {
 		new Fight(100,200);
@@ -66,7 +82,7 @@ public class Choice {
 	}
 	
 	/**
-	 * ¸Ä±äÍæ¼ÒÊôĞÔ
+	 * æ”¹å˜ç©å®¶å±æ€§
 	 */
 	public void changeAttribute() {
 		Player.hp+=this.getHP();
@@ -74,6 +90,9 @@ public class Choice {
 		Player.water+=this.getWater();
 		Player.money+=this.getMoney();
 		Player.distance+=this.getDiatance();
+		if(this.getBuff()==1) {
+			Player.torpedo++;
+		}
 	}
 	
 	public String getDescription() {
@@ -106,12 +125,6 @@ public class Choice {
 	public void setWater(int water) {
 		this.water = water;
 	}
-	public int getWhichFun() {
-		return whichFun;
-	}
-	public void setWhichFun(int whichFun) {
-		this.whichFun = whichFun;
-	}
 	public int getNextID() {
 		return nextID;
 	}
@@ -125,6 +138,14 @@ public class Choice {
 
 	public void setDiatance(int diatance) {
 		this.diatance = diatance;
+	}
+
+	public int getBuff() {
+		return buff;
+	}
+
+	public void setBuff(int buff) {
+		this.buff = buff;
 	}
 	
 }

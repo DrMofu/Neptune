@@ -3,22 +3,23 @@ package model;
 import java.sql.SQLException;
 
 /**
- * ÊÂ¼şÀà
- * @author ÍõÖ®Íş
+ * äº‹ä»¶ç±»
+ * @author ç‹ä¹‹å¨
  *
  */
 public class Event {
-	/** ÊÂ¼şID*/
+	/** äº‹ä»¶ID*/
 	private int ID;
-	/** ÊÂ¼şÃèÊö*/
+	/** äº‹ä»¶æè¿°*/
 	private String description;
-	/** Ñ¡ÏîÊı×é*/
+	/** é€‰é¡¹æ•°ç»„*/
 	private Choice[] choices;
 	
 	public Event(int id,String description,Choice[] choices) {
 		this.setID(id);
 		this.setDescription(description);
 		this.setChoices(choices);
+		System.out.println("eeee");
 	}
 	
 	public static void initialize() throws ClassNotFoundException, SQLException {
